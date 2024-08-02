@@ -34,11 +34,14 @@ app.post("/api/bfhl", (req, res) => {
   // const allAlpha = data["data"].filter(elem => alphabets.includes(elem));
   let allAlpha = [];
   let allNo = [];
+  let highestAlpha = "";
   data["data"].map(elem => {
-    if (alphabets.includes(elem))
+    if (alphabets.includes(elem.toUpperCase()))
       allAlpha.push(elem);
     if (isDigitString(elem))
       allNo.push(elem);
+    if (alphabets.includes(elem.toUpperCase()) && elem.toUpperCase() > highestAlpha.toUpperCase())
+      highestAlpha = elem;
   })
   // res.send(req.body)
   // console.log(allNo);
@@ -49,6 +52,7 @@ app.post("/api/bfhl", (req, res) => {
     "roll_number": "RA2111003020269",
     "numbers": allNo,
     "alphabets": allAlpha,
+    "highest_alphabet": highestAlpha,
   })
 })
 
