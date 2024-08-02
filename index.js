@@ -19,7 +19,12 @@ const numbers = [
 const isDigitString = (str) => /^\d+$/.test(str);
 
 app.get("/", (req, res) => {
-  res.send('hello');
+  // res.send('hello');
+  res.json({
+    "user_id": "samanyu_vyas_10092003",
+    "email": "sn8319@srmist.edu.in",
+    "roll_number": "RA2111003020269",
+  })
 });
 
 app.get("/api/bfhl", (req, res) => {
