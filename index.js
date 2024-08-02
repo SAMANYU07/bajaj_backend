@@ -12,6 +12,9 @@ const port = process.env.PORT || 4000;
 const alphabets = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 ];
+const numbers = [
+  "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
+];
 
 const isDigitString = (str) => /^\d+$/.test(str);
 
@@ -26,13 +29,27 @@ app.get("/api/bfhl", (req, res) => {
 
 app.post("/api/bfhl", (req, res) => {
   const data = req.body;
-  console.log("recieved data: ", data, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+  console.log("recieved data: ", data);
+  // const allNo = data["data"].filter(elem => parseInt(isDigitString(elem)));
+  // const allAlpha = data["data"].filter(elem => alphabets.includes(elem));
+  let allAlpha = [];
+  let allNo = [];
+  data["data"].map(elem => {
+    if (alphabets.includes(elem))
+      allAlpha.push(elem);
+    if (isDigitString(elem))
+      allNo.push(elem);
+  })
   // res.send(req.body)
-  res.json({message: "recieved", recievedData: data})
+  // console.log(allNo);
+  res.json({
+    is_success: true,
+    "user_id": "samanyu_vyas_10092003",
+    "email": "sn8319@srmist.edu.in",
+    "roll_number": "RA2111003020269",
+    "numbers": allNo,
+    "alphabets": allAlpha,
+  })
 })
 
 app.listen(port, () => {
