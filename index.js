@@ -35,7 +35,7 @@ app.post("/api/bfhl", (req, res) => {
   let allAlpha = [];
   let allNo = [];
   let highestAlpha = "";
-  data["data"].map(elem => {
+  data?.data?.map(elem => {
     if (alphabets.includes(elem.toUpperCase()))
       allAlpha.push(elem);
     if (isDigitString(elem))
